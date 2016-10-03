@@ -1,0 +1,18 @@
+featureNames=['wordNumDiff'
+                 ,'charNumDiff'
+                 ,'postagEditDistance'
+                 ,'lastPosComb'
+                 ,'lastPosEqual'
+                 ,'firstPosComb'
+                 ,'firstPosEqual'
+                 ,'lastWordInTimian'
+                 ,'lastTwoWordsInTimian'
+                 ,'lastPostagInTimian'
+                 ,'timeCombination'
+                 ,'firstWordInSecondPart'
+                 #,'firstPostagInSecondPart'
+                 #,'lastWordInFirstPart'
+                 #,'containCuewordsComb'
+                 ,"containCuewordsMain"
+                 ,'bothContainLonLat'
+              ]

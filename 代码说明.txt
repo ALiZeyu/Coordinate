@@ -1,0 +1,42 @@
+_featureExtractor定义了从句子中抽取各种特征的函数
+
+_convertDataByFeatureTemplate可以把一个sample按照特征模板，利用_featureExtractor中的具体函数，转换成特征向量，返回一个特征字典和标签的二元组（maxent需要的格式）
+
+_getTrainTestDataset从splitData_xxx.csv文件中读取所有的样本，调用_convertDataByFeatureTemplate中的函数，将每个样本转换成特征向量，将所有这样的特征向量划分成训练集和测试集，并可能做一些重采样的工作来使数据分布平衡（调用这个获取训练集测试集的函数时，可以提供一个参数指定训练集占全部数据的比例trainProp），并把数据及其特征输出到dataForMaxentInfos.csv这个文件中
+
+1 Y 
+f1w1上海 f1p1NR 
+f2w1文件 f2p1NN 
+FN=NR_  
+LN=_NN 
+f3=1确保 
+f4=1VV 
+f6=VP 
+f7=VP 
+f8=VP+VP 
+f9=VP+VP+VP 
+fNodeHLNP-PN-SBJ(NR) 
+fHeadLNR 
+fNodeALIP 
+f10=yesLC_来 
+f10=yesVV_颁布 
+f10=yesVV_实行 
+f10=yesVV_涉及 
+f10=yesDEC_的 
+fNodeHRVP(VV) 
+fHeadRVV 
+fNodeARIP 
+f11=yesVV_确保 
+f15=，+。 
+f17>7 
+f181=， 
+f182=1 
+f19=noNP 
+f22=NR 
+f23=上海 
+f24=NR+NN 
+f25=上海+文件 
+fconL=等 
+fconL=了 
+fconL=一 
+fwWP上海_， fwWP上海_确保 fwWP上海_了 fwWP上海_浦东 fwWP上海_开发 fwWP上海_的 fwWP上海_有序 fwWP上海_进行 fwWP浦东_， fwWP浦东_确保 fwWP浦东_了 fwWP浦东_浦东 fwWP浦东_开发 fwWP浦东_的 fwWP浦东_有序 fwWP浦东_进行 fwWP近年_， fwWP近年_确保 fwWP近年_了 fwWP近年_浦东 fwWP近年_开发 fwWP近年_的 fwWP近年_有序 fwWP近年_进行 fwWP来_， fwWP来_确保 fwWP来_了 fwWP来_浦东 fwWP来_开发 fwWP来_的 fwWP来_有序 fwWP来_进行 fwWP颁布_， fwWP颁布_确保 fwWP颁布_了 fwWP颁布_浦东 fwWP颁布_开发 fwWP颁布_的 fwWP颁布_有序 fwWP颁布_进行 fwWP实行_， fwWP实行_确保 fwWP实行_了 fwWP实行_浦东 fwWP实行_开发 fwWP实行_的 fwWP实行_有序 fwWP实行_进行 fwWP了_， fwWP了_确保 fwWP了_了 fwWP了_浦东 fwWP了_开发 fwWP了_的 fwWP了_有序 fwWP了_进行 fwWP*OP*_， fwWP*OP*_确保 fwWP*OP*_了 fwWP*OP*_浦东 fwWP*OP*_开发 fwWP*OP*_的 fwWP*OP*_有序 fwWP*OP*_进行 fwWP*T*-1_， fwWP*T*-1_确保 fwWP*T*-1_了 fwWP*T*-1_浦东 fwWP*T*-1_开发 fwWP*T*-1_的 fwWP*T*-1_有序 fwWP*T*-1_进行 fwWP涉及_， fwWP涉及_确保 fwWP涉及_了 fwWP涉及_浦东 fwWP涉及_开发 fwWP涉及_的 fwWP涉及_有序 fwWP涉及_进行 fwWP经济_， fwWP经济_确保 fwWP经济_了 fwWP经济_浦东 fwWP经济_开发 fwWP经济_的 fwWP经济_有序 fwWP经济_进行 fwWP、_， fwWP、_确保 fwWP、_了 fwWP、_浦东 fwWP、_开发 fwWP、_的 fwWP、_有序 fwWP、_进行 fwWP贸易_， fwWP贸易_确保 fwWP贸易_了 fwWP贸易_浦东 fwWP贸易_开发 fwWP贸易_的 fwWP贸易_有序 fwWP贸易_进行 fwWP、_， fwWP、_确保 fwWP、_了 fwWP、_浦东 fwWP、_开发 fwWP、_的 fwWP、_有序 fwWP、_进行 fwWP建设_， fwWP建设_确保 fwWP建设_了 fwWP建设_浦东 fwWP建设_开发 fwWP建设_的 fwWP建设_有序 fwWP建设_进行 fwWP、_， fwWP、_确保 fwWP、_了 fwWP、_浦东 fwWP、_开发 fwWP、_的 fwWP、_有序 fwWP、_进行 fwWP规划_， fwWP规划_确保 fwWP规划_了 fwWP规划_浦东 fwWP规划_开发 fwWP规划_的 fwWP规划_有序 fwWP规划_进行 fwWP、_， fwWP、_确保 fwWP、_了 fwWP、_浦东 fwWP、_开发 fwWP、_的 fwWP、_有序 fwWP、_进行 fwWP科技_， fwWP科技_确保 fwWP科技_了 fwWP科技_浦东 fwWP科技_开发 fwWP科技_的 fwWP科技_有序 fwWP科技_进行 fwWP、_， fwWP、_确保 fwWP、_了 fwWP、_浦东 fwWP、_开发 fwWP、_的 fwWP、_有序 fwWP、_进行 fwWP文教_， fwWP文教_确保 fwWP文教_了 fwWP文教_浦东 fwWP文教_开发 fwWP文教_的 fwWP文教_有序 fwWP文教_进行 fwWP等_， fwWP等_确保 fwWP等_了 fwWP等_浦东 fwWP等_开发 fwWP等_的 fwWP等_有序 fwWP等_进行 fwWP领域_， fwWP领域_确保 fwWP领域_了 fwWP领域_浦东 fwWP领域_开发 fwWP领域_的 fwWP领域_有序 fwWP领域_进行 fwWP的_， fwWP的_确保 fwWP的_了 fwWP的_浦东 fwWP的_开发 fwWP的_的 fwWP的_有序 fwWP的_进行 fwWP七十一_， fwWP七十一_确保 fwWP七十一_了 fwWP七十一_浦东 fwWP七十一_开发 fwWP七十一_的 fwWP七十一_有序 fwWP七十一_进行 fwWP件_， fwWP件_确保 fwWP件_了 fwWP件_浦东 fwWP件_开发 fwWP件_的 fwWP件_有序 fwWP件_进行 fwWP法规性_， fwWP法规性_确保 fwWP法规性_了 fwWP法规性_浦东 fwWP法规性_开发 fwWP法规性_的 fwWP法规性_有序 fwWP法规性_进行 fwWP文件_， fwWP文件_确保 fwWP文件_了 fwWP文件_浦东 fwWP文件_开发 fwWP文件_的 fwWP文件_有序 fwWP文件_进行
